@@ -1,0 +1,26 @@
+Intent:
+-------
+1. Separate the construction of a complex object from its representation 
+   so that the same construction process can create different representations.
+2. Parse a complex representation, create one of several targets.
+
+The builder pattern provides a build object which is used to construct a 
+complex object called the product. 
+It encapsulates the logic of constructing the different pieces of the product.
+
+
+Builder pattern solves two specific problems.
+	Too many constructor arguments.
+	Incorrect object state.
+	Builder pattern helps us in creating immutable classes with large set of state attributes.
+	
+Existing implementations in JDK
+-------------------------------
+All implementations of java.lang.Appendable are infact good example of use of 
+Builder pattern in java. e.g.
+
+java.lang.StringBuilder#append() [Unsynchronized class]
+
+java.lang.StringBuffer#append() [Synchronized class]
+
+java.nio.ByteBuffer#put() (also on CharBuffer, ShortBuffer, IntBuffer, LongBuffer, FloatBuffer and DoubleBuffer)

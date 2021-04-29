@@ -1,0 +1,56 @@
+Builder vs Factory
+------------------
+
+Builder focuses on constructing a complex object step by step. 
+Abstract Factory emphasizes a family of product objects (either simple or complex). 
+Builder returns the product as a final step, but as far as the Abstract Factory is concerned, the product gets returned immediately.
+Builder often builds a Composite. Often, designs start out using Factory Method (less complicated, more customizable, subclasses proliferate) 
+and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex) as the designer discovers where more
+ flexibility is needed.
+Sometimes creational patterns are complementary: 
+Builder can use one of the other patterns to implement which components get built. 
+Abstract Factory, Builder, and Prototype can use Singleton in their implementations.
+
+
+
+Basic Factory Example
+----------------------
+// Factory
+static class FruitFactory {
+    static Fruit create(name, color, firmness) {
+        // Additional logic
+        return new Fruit(name, color, firmness);
+    }
+}
+
+// Usage
+Fruit fruit = FruitFactory.create("apple", "red", "crunchy");
+Basic Builder Example
+
+// Builder
+class FruitBuilder {
+    String name, color, firmness;
+    FruitBuilder setName(name)         { this.name     = name;     return this; }
+    FruitBuilder setColor(color)       { this.color    = color;    return this; }
+    FruitBuilder setFirmness(firmness) { this.firmness = firmness; return this; }
+    Fruit build() {
+        return new Fruit(this); // Pass in the builder
+    }
+}
+
+// Usage
+Fruit fruit = new FruitBuilder()
+        .setName("apple")
+        .setColor("red")
+        .setFirmness("crunchy")
+        .build();
+        
+        
+ 1) Factory Pattern - Assume, you have one super class and N number of sub classes. 
+ The object is created depends on which parameter/value is passed.
+
+2) Builder pattern - to create complex object.
+
+Ex: Make a Loan Object. Loan could be house loan, car loan ,
+    education loan ..etc. Each loan will have different interest rate, amount ,  
+    duration ...etc. Finally a complex object created through step by step process.
